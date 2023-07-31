@@ -8,7 +8,9 @@ const port = process.env.PORT || 80;
 const index_direction = process.env.INDEX_DIRECTION;
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, index_direction));
+  const index_path = path.join(__dirname, index_direction);
+  console.log(index_path);
+  res.sendFile(index_path);
 });
 
 app.listen(port);
