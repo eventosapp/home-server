@@ -1,16 +1,21 @@
 // Server with express
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
-const path = require('path');
+const path = require("path");
 
 const app = express();
+
 const port = process.env.PORT || 80;
+
 const index_direction = process.env.INDEX_DIRECTION;
+const index_path = path.join(__dirname, index_direction);
 
-app.get("/", function (req, res) {
-  const index_path = path.join(__dirname, index_direction);
-  res.sendFile(index_path);
-});
+app.use(express.static(index_path));
 
-app.listen(port);
-console.log(`Server on port ${port} with express`);
+app.get("/*", (req, res) => res.sendFile(path.join(__dirname)));
+
+const server = http.createServer(app);
+
+server.listen(port, () =>
+  console.log(`App running on: http://localhost:${port}`)
+);
