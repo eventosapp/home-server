@@ -9,7 +9,6 @@ const index_direction = process.env.INDEX_DIRECTION;
 
 app.get("/", function (req, res) {
   const index_path = path.join(__dirname, index_direction);
-  console.log(index_path);
   res.sendFile(index_path);
 });
 
